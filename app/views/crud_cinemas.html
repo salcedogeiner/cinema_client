@@ -1,0 +1,64 @@
+<div class="col-md-6">
+    <div class="panel panel-info panel-body ">
+
+        <div class="form-group">
+          <label>Search Cinema: <input ng-model="searchText"></label>
+        </div>
+
+        <table class="table table-bordered">
+          <thead>
+              <tr>
+                  <td>name</td><td>location</td><td>movies</td><td>edit</td>
+                  <td>delete</td>
+                </tr>
+          </thead>
+          <tr  ng-repeat="cinema in crudCinemas.cinemas | filter:searchText">
+            <td>{{cinema.name}}</td>
+            <td>{{cinema.location}}</td>
+            <td>
+              <ul>
+                <li ng-repeat="movie in cinema.movies">
+                  {{movie.name}}
+                </li>
+              </ul>
+
+            </td>
+            <td><button class="btn btn-warning" ng-click="crudCinemas.ncinema=cinema">edit</button></td>
+            <td><button class="btn btn-danger" ng-click="crudCinemas.deleteCinema(cinema._id)">delete</button></td>
+          </tr>
+        </table>
+
+      </div>
+</div>
+<div class="col-md-6">
+    <div class="panel panel-success panel-body ">
+        <form class="form-group" name="cform" ng-submit="cform.$valid && crudCinemas.createCinema()" validate>
+          <fieldset class="form-group">
+              <input type="text" class="form-control" placeholder="name" ng-model="crudCinemas.ncinema.name" required>
+          </fieldset>
+          <fieldset class="form-group">
+              <input type="text" class="form-control" placeholder="location" ng-model="crudCinemas.ncinema.location">
+          </fieldset>
+          <fieldset class="form-group">
+            <p>
+                <ul>Movies:
+                    <li ng-repeat="movie in crudCinemas.ncinema.movies">
+                      {{movie.name}} in {{movie.language}} <a class="text-danger" href="" ng-click="crudCinemas.removeMovie($index)">X</a>
+                    </li>
+                  </ul>
+            </p>
+              <label>Add movies</label>
+              <select class="form-control" ng-model="currentMovie"  ng-options="movie as movie.name +' in '+ movie.language for movie in crudCinemas.smovies"></select><br />
+              <button type="button" class="btn btn-info pull-right" ng-click="crudCinemas.addMovie(currentMovie)">Add</button>
+          </fieldset>
+          <input class="btn btn-success"  type="submit" class="form-control" value="Confirm">
+          <button class="btn btn-info" ng-click="crudCinemas.ncinema={movies:[]}">clean</button>
+        </form>
+
+
+      </div>
+
+
+</div>
+
+

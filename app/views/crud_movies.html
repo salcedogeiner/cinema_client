@@ -1,0 +1,47 @@
+<div class=" col-md-6">
+    <div class="panel panel-info panel-body ">
+
+        <div class="form-group">
+          <label>Search Movie: <input ng-model="searchText"></label>
+        </div>
+
+        <table class="table table-bordered">
+          <thead>
+              <tr>
+                  <td>name</td><td>language</td><td>date</td><td>edit</td>
+                  <td>delete</td>
+                </tr>
+          </thead>
+          <tr  ng-repeat="movie in crudMovies.movies | filter:searchText">
+            <td>{{movie.name}}</td>
+            <td>{{movie.language}}</td>
+            <td>{{movie.date | date: 'MM/dd/yyyy'}}</td>
+            <td><button class="btn btn-warning" ng-click="crudMovies.nmovie=movie">edit</button></td>
+            <td><button class="btn btn-danger" ng-click="crudMovies.deleteMovie(movie._id)">delete</button></td>
+          </tr>
+        </table>
+
+      </div>
+</div>
+<div class=" col-md-6">
+    <div class="panel panel-success panel-body ">
+        <form name="cform" ng-submit="cform.$valid && crudMovies.createMovie()" validate>
+          <fieldset class="form-group">
+              <input type="text" class="form-control" placeholder="name" ng-model="crudMovies.nmovie.name" required>
+          </fieldset>
+          <fieldset class="form-group">
+              <input type="date" class="form-control" placeholder="date" ng-model="crudMovies.nmovie.date">
+          </fieldset>
+          <fieldset class="form-group">
+              <input type="text" class="form-control" placeholder="language" ng-model="crudMovies.nmovie.language" required>
+          </fieldset>
+          <input class="btn btn-success"  type="submit" class="form-control" value="Confirm">
+          <button class="btn btn-info" ng-click="crudMovies.nmovie={}">clean</button>
+        </form>
+
+      </div>
+</div>
+
+
+
+

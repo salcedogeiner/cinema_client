@@ -32,6 +32,16 @@ angular
         controller: 'MoviesViewCtrl',
         controllerAs: 'moviesView'
       })
+      .when('/crud_movies', {
+        templateUrl: 'views/crud_movies.html',
+        controller: 'CrudMoviesCtrl',
+        controllerAs: 'crudMovies'
+      })
+      .when('/crud_cinemas', {
+        templateUrl: 'views/crud_cinemas.html',
+        controller: 'CrudCinemasCtrl',
+        controllerAs: 'crudCinemas'
+      })
       .otherwise({
         redirectTo: '/'
       });

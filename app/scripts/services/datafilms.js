@@ -20,8 +20,8 @@ angular.module('cinemaApp')
       post: function (tabla,elemento) {
         return $http.post(path+tabla,elemento);
       },
-      put: function (tabla,id,elemento) {
-        return $http.put(path+tabla+"/"+id,elemento);
+      put: function (tabla,elemento) {
+        return $http.put(path+tabla,elemento);
       },
       delete: function (tabla,id) {
         return $http.delete(path+tabla+"/"+id);
