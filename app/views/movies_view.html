@@ -1,0 +1,31 @@
+<label>Search Cinema: <input ng-model="searchTextCine"></label>
+
+<div class="panel panel-info" ng-repeat="cinema in moviesView.cinemas  | filter:searchTextCine">
+  <div class="panel-heading">
+    {{cinema.name}}
+  </div>
+  <div class="panel-body">
+      <div class="form-group">
+          <label>Search Movie: <input ng-model="searchText"></label>
+      </div>
+
+    <div class="panel panel-success">
+      <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>name</td><td>language</td><td>date</td>
+              </tr>
+        </thead>
+        <tr  ng-repeat="movie in cinema.movies | filter:searchText">
+          <td>{{movie.name}}</td>
+          <td>{{movie.language}}</td>
+          <td>{{movie.date}}</td>
+        </tr>
+      </table>
+    </divc>
+
+  </div>
+  <div class="panel-footer">
+      {{cinema.location}}
+  </div>
+</div>
